@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ブロックサプライズ</title>
+   <meta name="description" content="ブロックサプライズの公式ホームページです。">
+<link rel="icon" href="favicon.png" type="image/png">
+
+<script src="https://pns.search-up.f5.si/navi-service.js" defer></script>
+
+
+
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #f0f4f8;
+      color: #333;
+    }
+
+    /* ナビゲーションバー */
+    header.navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      background-color: #ffffffcc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      z-index: 100;
+    }
+/* PC表示 */
+/* 共通 */
+/* 共通（PC表示） */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fdfdfd;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* スマホ表示で縦並びに変更 */
+@media screen and (max-width: 600px) {
+  .navbar {
+    display: block; /* ← 一旦縦並びにして、ロゴとメニューを分ける */
+    padding: 1rem 1.5rem;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #2a4d69;
+    margin-bottom: 0.8rem;
+  }
+
+  .nav-menu {
+    display: flex;
+    justify-content: center; /* ← 横並びに中央揃え */
+    gap: 1rem;
+    flex-wrap: wrap;         /* ← 狭い画面で折り返し可能に */
+  }
+
+  .nav-menu a {
+    font-size: 0.9rem;
+    white-space: nowrap;     /* ← 横書きで折り返さない */
+  }
+}
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #2a4d69;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1.5rem;
+      margin-right: 4rem;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+
+
+.subscribe-button {
+  background-color: #000;
+  color: #fff !important;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+
+
+  .short-card .info {
+    padding: 0.5rem;
+  }
+
+  .short-card .title {
+    font-size: 0.9rem;
+  }
+
+  .short-card .desc {
+    font-size: 0.8rem;
+  }
+
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #2a4d69;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1.5rem;
+      margin-right: 4rem;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-menu a:hover {
+      color: #2a4d69;
+    }
+
+    /* ヒーロー画像＋キャッチコピー */
+    .hero {
+      margin-top: 80px;
+      position: relative;
+      text-align: center;
+    }
+
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    @media screen and (max-width: 600px) {
+  .hero {
+    margin-top: 140px; /* ← ナビゲーションバーの高さ＋余白分だけ下げる */
+  }
+
+  .hero-text {
+    font-size: 1.4rem;
+    padding: 0 1rem;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 100%;               /* ← 横幅制限を解除して広げる */
+    width: 100%;                   /* ← 明示的に横いっぱいにする */
+    left: 0;                       /* ← 中央揃えを解除して横幅に合わせる */
+    transform: translateY(-50%);  /* ← 横方向の中央揃えを外す */
+  }
+}
+
+    /* 広告バー（Swiper） */
+    .ad-gallery {
+      margin: 3rem auto;
+      max-width: 720px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    .ad-gallery img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .swiper-pagination {
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+.video-section {
+  text-align: center;
+  margin: 4rem auto;
+  max-width: 720px;
+}
+
+.video-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #2a4d69;
+  margin-bottom: 0.5rem;
+}
+
+.video-description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.news-section {
+  max-width: 960px;
+  margin: 6rem auto 4rem;
+  padding: 0 2rem;
+}
+
+.news-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  border-left: 2px solid #2a4d69;
+}
+
+.news-list li {
+  margin-bottom: 1.2rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.news-date {
+  font-size: 0.9rem;
+  color: #888;
+  margin-right: 0.8rem;
+}
+
+.news-text {
+  font-size: 1rem;
+  color: #333;
+}
+
+.news-new {
+  display: inline-block;
+  background-color: #ff4d4d;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  margin-right: 0.6rem;
+  font-weight: bold;
+}
+
+.news-text a {
+  color: #2a4d69;
+  text-decoration: underline;
+}
+.news-text a:hover {
+  text-decoration: none;
+}
+
+
+    /* YouTube動画セクション */
+    .video-wrapper {
+      margin: 3rem auto;
+      width: 90%;
+      max-width: 720px;
+      aspect-ratio: 16 / 9;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+.site-footer {
+  background: #f5f5f5;
+  padding: 2rem 1.5rem;
+  margin-top: 4rem;
+  border-top: 1px solid #ddd;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-text {
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-nav a {
+  color: #2a4d69;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+.footer-nav a:hover {
+  opacity: 0.6;
+}
+
+.subscribe-button {
+  background-color: #000;         /* 黒背景 */
+  color: #fff !important;         /* ← 白文字を強制 */
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;          /* 丸っぽく */
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+.subscribe-button:hover {
+  background-color: #222;
+  transform: scale(1.05);
+}
+@media screen and (max-width: 768px) {
+  .shorts-grid {
+    grid-template-columns: repeat(2, 1fr); /* タブレットで2列 */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .shorts-grid {
+    grid-template-columns: 1fr; /* スマホで1列 */
+  }
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- ナビゲーションバー -->
+ <header class="navbar">
+  <div class="nav-header">
+    <div class="logo">ブロックサプライズ</div>
+  </div>
+  <nav class="nav-menu">
+    <a href="index.html">ホーム</a>
+    <a href="guide.html">ガイド</a>
+    <a href="videos.html">動画</a>
+    <a href="shorts.html">ショート</a>
+    <a href="https://www.youtube.com/@block-surprise?sub_confirmation=1" target="_blank" rel="noopener" class="subscribe-button">登録</a>
+  </nav>
+</header>
+
+
+
+  <!-- ヒーロー画像＋キャッチコピー -->
+  <section class="hero" id="home">
+    <img src="hero.png" alt="hero image" />
+    <div class="hero-text">心地よく驚こう、驚きに飛び込もう。<br>今日がまたみたくなる場所。</div>
+  </section>
+
+  <!-- 広告バー（Swiper） -->
+<section class="ad-gallery" id="gallery">
+  <div class="swiper ad-swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <a href="https://line.me/S/sticker/あなたのスタンプURL" target="_blank">
+          <img src="ad1.png" alt="LINEスタンプ登場" />
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <a href="https://www.youtube.com/watch?v=pKGf6zFiK_8" target="_blank">
+          <img src="ad2.png" alt="新作動画公開中" />
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <a href="https://あなたのグッズ販売ページ" target="_blank">
+          <img src="ad3.png" alt="グッズ販売開始" />
+        </a>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<section class="video-section" id="video">
+  <h2 class="video-title" id="navi-1" navi-1-exp="おすすめの動画はここからチェック！">おすすめの動画</h2>
+  <p class="video-description">ブロックサプライズのおすすめ動画をチェックしよう！</p>
+</section>
+
+  <!-- YouTube動画 -->
+  <section class="video-wrapper" id="video"　id="navi-2" navi-2-exp="ここから見れるよ！">
+    <iframe src="https://www.youtube.com/embed/IG4Q4PmBqGQ" allowfullscreen></iframe>
+  </section>
+
+<section class="news-section" id="navi-3" navi-3-exp="お知らせはこちらから！">
+  <h2 class="section-title">📰NEWS</h2>
+  <ul id="newsList" class="news-list"></ul>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-text">© 2025 ブロックサプライズ公式サイト</p>
+    <nav class="footer-nav">
+      <a href="about.html">この世界について</a>
+      <a href="https://www.youtube.com/channel/UCUaJpMmiilIKKPoAqnI0hFQ" target="_blank" rel="noopener">YouTubeチャンネル</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+  </div>
+</footer>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script>
+    const adSwiper = new Swiper('.ad-swiper', {
+      loop: true,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+  </script>
+<script>
+const newsItems = [
+  {
+    date: "2025.10.05",
+    textBefore: " ",
+    linkText: "ホームページ",
+    url: "index.html",
+    textAfter: "が開設されました"
+  }
+];
+
+
+
+function renderNews() {
+  const list = document.getElementById("newsList");
+
+  const latestDate = newsItems.reduce((latest, item) => {
+    return new Date(item.date) > new Date(latest.date) ? item : latest;
+  }).date;
+
+  newsItems.forEach(item => {
+    const li = document.createElement("li");
+    const isNew = item.date === latestDate;
+    const newLabel = isNew ? `<span class="news-new">NEW</span>` : "";
+
+    let linkedText = "";
+
+    if (item.linkText && item.url) {
+      const before = item.textBefore || "";
+      const after = item.textAfter || "";
+      const linkHTML = `<a href="${item.url}" target="_blank" rel="noopener">${item.linkText}</a>`;
+      linkedText = `${before}${linkHTML}${after}`;
+    } else {
+      linkedText = item.text || "";
+    }
+
+    li.innerHTML = `
+      <span class="news-date">${item.date} ${newLabel}</span>
+      <span class="news-text">${linkedText}</span>
+    `;
+    list.appendChild(li);
+  });
+}
+
+renderNews();
+
+
+
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.querySelector(".menu-toggle");
+    const menu = document.querySelector(".nav-menu");
+
+    toggle.addEventListener("click", () => {
+      const isOpen = menu.classList.contains("open");
+      if (isOpen) {
+        menu.classList.remove("open");
+        toggle.classList.remove("open");
+      } else {
+        menu.classList.add("open");
+        toggle.classList.add("open");
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

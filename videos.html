@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>動画一覧 - ブロックサプライズ</title>
+   <meta name="description" content="ブロックサプライズの動画が掲載されています。">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #f9fbfd;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+ header.navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      background-color: #ffffffcc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      z-index: 100;
+    }
+    header.navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      background-color: #ffffffcc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      z-index: 100;
+    }
+  .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fdfdfd;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* スマホ表示で縦並びに変更 */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fdfdfd;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* スマホ表示で縦並びに変更 */
+@media screen and (max-width: 600px) {
+  .navbar {
+    display: block; /* ← 一旦縦並びにして、ロゴとメニューを分ける */
+    padding: 1rem 1.5rem;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #2a4d69;
+    margin-bottom: 0.8rem;
+  }
+
+  .nav-menu {
+    display: flex;
+    justify-content: center; /* ← 横並びに中央揃え */
+    gap: 1rem;
+    flex-wrap: wrap;         /* ← 狭い画面で折り返し可能に */
+  }
+
+  .nav-menu a {
+    font-size: 0.9rem;
+    white-space: nowrap;     /* ← 横書きで折り返さない */
+  }
+}
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #2a4d69;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1.5rem;
+      margin-right: 4rem;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-menu a:hover {
+      color: #2a4d69;
+    }
+
+    .video-gallery {
+      max-width: 1080px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #2a4d69;
+      margin-top: 10rem;
+    }
+
+    .search-box {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .search-box input {
+      padding: 0.6rem 1rem;
+      width: 60%;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .video-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform 0.4s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-6px);
+    }
+
+.video-thumb iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  display: block;
+}
+
+.suggestion-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem auto 2rem;
+  width: 60%;
+  max-height: 200px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.suggestion-list li {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestion-list li:hover {
+  background-color: #f0f4ff;
+}
+
+    .video-info {
+      padding: 1rem 1.2rem;
+    }
+
+    .video-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: #2a4d69;
+    }
+
+    .video-info p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+.site-footer {
+  background: #f5f5f5;
+  padding: 2rem 1.5rem;
+  margin-top: 4rem;
+  border-top: 1px solid #ddd;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-text {
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-nav a {
+  color: #2a4d69;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+.footer-nav a:hover {
+  opacity: 0.6;
+}
+
+.subscribe-button {
+  background-color: #000;         /* 黒背景 */
+  color: #fff !important;         /* ← 白文字を強制 */
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;          /* 丸っぽく */
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+.subscribe-button:hover {
+  background-color: #222;
+  transform: scale(1.05);
+}
+@media screen and (max-width: 768px) {
+  .shorts-grid {
+    grid-template-columns: repeat(2, 1fr); /* タブレットで2列 */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .shorts-grid {
+    grid-template-columns: 1fr; /* スマホで1列 */
+  }
+}
+    @media (max-width: 600px) {
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  </style>
+</head>
+<body>
+ <header class="navbar">
+  <div class="nav-header">
+    <div class="logo">ブロックサプライズ</div>
+  </div>
+  <nav class="nav-menu">
+    <a href="index.html">ホーム</a>
+    <a href="guide.html">ガイド</a>
+    <a href="videos.html">動画</a>
+    <a href="shorts.html">ショート</a>
+    <a href="https://www.youtube.com/@block-surprise?sub_confirmation=1" target="_blank" rel="noopener" class="subscribe-button">登録</a>
+  </nav>
+</header>
+
+
+  <main class="video-gallery">
+    <h2 class="section-title">🎥 ブロックサプライズの動画たち</h2>
+
+<!-- 検索ボックス -->
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="動画タイトルで検索" oninput="showSuggestions()" />
+  <ul id="suggestions" class="suggestion-list"></ul>
+</div>
+
+
+<!-- おすすめ動画 -->
+<section id="recommendedSection">
+  <h3 class="section-title">おすすめ動画</h3>
+  <div class="video-grid">
+    <!-- 3つのおすすめ動画カード -->
+      <div class="video-card">
+        <div class="video-thumb">
+          <iframe src="https://www.youtube.com/embed/wvmb48TJ2TI" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <h3>人狼無双まであとちょっとだった</h3>
+          <p>HIVEの人狼ゲームで、あと一歩のところまで…！</p>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-thumb">
+          <iframe src="https://www.youtube.com/embed/lXdV7SZ3Jbg" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <h3>ジャンプブリッジを初心者でもわかりやすく解説</h3>
+          <p>静かなブロックの世界に、ちいさな技術が宿る。</p>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-thumb">
+          <iframe src="https://www.youtube.com/embed/ITII1Qsbjvs" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <h3>HIVEのベッドウォーズMEGAを初心者でもわかりやすく説明</h3>
+          <p>大きな戦いの中に、小さな工夫が光る。</p>
+        </div>
+      </div>
+</section>
+
+<!-- その他の動画 -->
+<section>
+  <h3 class="section-title">その他の動画</h3>
+  <div class="video-grid" id="otherVideos">
+    <!-- 全部の動画カード -->
+      <div class="video-card" data-tags="bedwars">
+        <div class="video-thumb">
+          <iframe src="https://www.youtube.com/embed/ITII1Qsbjvs" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <h3>HIVEのベッドウォーズMEGAを初心者でもわかりやすく説明</h3>
+          <p>大きな戦いの中に、小さな工夫が光る。</p>
+        </div>
+      </div>
+
+      <div class="video-card" data-tags="ジャンプブリッジ">
+        <div class="video-thumb">
+          <iframe src="https://www.youtube.com/embed/lXdV7SZ3Jbg" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <h3>ジャンプブリッジを初心者でもわかりやすく解説</h3>
+          <p>静かなブロックの世界に、ちいさな技術が宿る。</p>
+        </div>
+      </div>
+
+      <div class="video-card" data-tags="ショート動画">
+        <div class="video-thumb">
+          <iframe src="https://www.youtube.com/embed/doJzkkWPEJg" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <h3>short動画ゲーム</h3>
+          <p>初めてでも楽しめる、ちいさな驚きが詰まったショートゲーム集。</p>
+        </div>
+      </div>
+
+      <div class="video-card" data-tags="人狼,マーダーミステリー,初心者">
+        <div class="video-thumb">
+          <iframe src="https://www.youtube.com/embed/sih93_Doeik" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <h3>HIVEの人狼ゲーム(Murder Mystery)を初心者でもわかりやすく解説</h3>
+          <p>逃げる、見つける、信じる。 初心者でもすぐに楽しめる、HIVEのマーダーミステリー入門。</p>
+        </div>
+      </div>
+
+      <div class="video-card" data-tags="人狼,マーダーミステリー,無双">
+        <div class="video-thumb">
+          
+        <div class="video-info">
+          <h3>人狼無双まであとちょっとだった</h3>
+          <p>HIVEの人狼ゲームで、あと一歩のところまで…！</p>
+        </div>
+      </div>
+
+      <div class="video-card" data-tags="ベッドウォーズ,bedwars">
+        <div class="video-thumb">
+          <iframe src="https://www.youtube.com/embed/pKGf6zFiK_8" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">
+          <h3>途中までよかったのに</h3>
+          <p>え、これいけるんじゃない？──からの、まさかの展開。</p>
+        </div>
+      </div>
+    <!-- 追加可能 -->
+  </div>
+</section>
+<p id="noResults" style="text-align:center; color:#999; display:none; margin-top:2rem;">
+  該当する動画が見つかりませんでした。
+</p>
+
+  </main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-text">© 2025 ブロックサプライズ公式サイト</p>
+    <nav class="footer-nav">
+      <a href="about.html">この世界について</a>
+      <a href="https://www.youtube.com/channel/UCUaJpMmiilIKKPoAqnI0hFQ" target="_blank" rel="noopener">YouTubeチャンネル</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+  </div>
+</footer>
+<script>
+  function filterVideos() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const cards = document.querySelectorAll("#otherVideos .video-card");
+    const recommendedSection = document.getElementById("recommendedSection");
+
+    // 検索入力がある場合はおすすめを非表示
+    if (input.trim() !== "") {
+      recommendedSection.style.display = "none";
+    } else {
+      recommendedSection.style.display = "block";
+    }
+
+    // その他の動画をフィルター
+    cards.forEach(card => {
+      const title = card.querySelector("h3").textContent.toLowerCase();
+      card.style.display = title.includes(input) ? "block" : "none";
+    });
+  }
+</script>
+<script>
+  // 動画タイトル一覧（候補表示用）
+  const videoTitles = [
+    "わかりやすく解説",
+    "ベッドウォーズ",
+    "bedwars",
+    "人狼",
+    "マーダーミステリー",
+    "Murder Mystery",
+    "無双",
+    "人狼無双まであとちょっとだった",
+    "ジャンプブリッジを初心者でもわかりやすく解説",
+    "HIVEのベッドウォーズMEGAを初心者でもわかりやすく説明",
+    "short動画ゲーム",
+    "HIVEの人狼ゲーム(Murder Mystery)を初心者でもわかりやすく解説",
+    "途中までよかったのに"
+  ];
+
+  // 候補表示
+
+function showSuggestions() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const suggestionBox = document.getElementById("suggestions");
+    suggestionBox.innerHTML = "";
+
+    if (input.trim() === "") return;
+
+    const matches = videoTitles.filter(title => title.toLowerCase().includes(input));
+    matches.forEach(title => {
+      const li = document.createElement("li");
+      li.textContent = title;
+      li.onclick = () => {
+        document.getElementById("searchInput").value = title;
+        suggestionBox.innerHTML = "";
+        filterVideos();
+      };
+      suggestionBox.appendChild(li);
+    });
+  }
+
+  function filterVideos() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const cards = document.querySelectorAll("#otherVideos .video-card");
+    const recommendedSection = document.getElementById("recommendedSection");
+    const suggestionBox = document.getElementById("suggestions");
+    const noResults = document.getElementById("noResults");
+
+    // おすすめ動画の表示切り替え
+    recommendedSection.style.display = input.trim() !== "" ? "none" : "block";
+
+    // 候補を消す
+    suggestionBox.innerHTML = "";
+
+    let matchCount = 0;
+
+    cards.forEach(card => {
+      const title = card.querySelector("h3").textContent.toLowerCase();
+      const tags = card.dataset.tags ? card.dataset.tags.toLowerCase() : "";
+      const match = title.includes(input) || tags.includes(input);
+      card.style.display = match ? "block" : "none";
+      if (match) matchCount++;
+    });
+
+    // 結果ゼロなら「ない」表示＋カード非表示
+    noResults.style.display = matchCount === 0 ? "block" : "none";
+    document.getElementById("otherVideos").style.display = matchCount === 0 ? "none" : "grid";
+  }
+</script>
+
+
+</body>
+</html>
+

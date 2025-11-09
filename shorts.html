@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ショート動画一覧 - ブロックサプライズ</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <style>
+    body {
+      font-family: "Helvetica Neue", sans-serif;
+      background: #fdfdfd;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #fdfdfd;
+  border-bottom: 1px solid #eee;
+}
+
+    .shorts-section {
+      max-width: 960px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: #2a4d69;
+    }
+
+    .section-lead {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .shorts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+.short-card {
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: transform 0.3s ease;
+  font-size: 0.85rem; /* ← 全体の文字サイズを少し小さく */
+}
+
+.short-card .info {
+  padding: 0.6rem 0.8rem; /* ← 余白を縮小 */
+}
+
+.short-card .title {
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+.short-card .desc {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.short-card .tags {
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  color: #2a4d69;
+}
+.short-card iframe {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  max-height: 320px;
+  border: none;
+}
+
+ header.navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      background-color: #ffffffcc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      z-index: 100;
+    }
+    header.navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      background-color: #ffffffcc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      z-index: 100;
+    }
+  .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fdfdfd;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* スマホ表示で縦並びに変更 */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fdfdfd;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* スマホ表示で縦並びに変更 */
+@media screen and (max-width: 600px) {
+  .navbar {
+    display: block; /* ← 一旦縦並びにして、ロゴとメニューを分ける */
+    padding: 1rem 1.5rem;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #2a4d69;
+    margin-bottom: 0.8rem;
+  }
+
+  .nav-menu {
+    display: flex;
+    justify-content: center; /* ← 横並びに中央揃え */
+    gap: 1rem;
+    flex-wrap: wrap;         /* ← 狭い画面で折り返し可能に */
+  }
+
+  .nav-menu a {
+    font-size: 0.9rem;
+    white-space: nowrap;     /* ← 横書きで折り返さない */
+  }
+}
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #2a4d69;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1.5rem;
+      margin-right: 4rem;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-menu a:hover {
+      color: #2a4d69;
+    }
+
+.sub-title {
+  font-size: 1.2rem;
+  margin: 2rem 0 1rem;
+  color: #2a4d69;
+  border-left: 4px solid #2a4d69;
+  padding-left: 0.5rem;
+}
+.channel-link {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.channel-link a {
+  color: #2a4d69;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.site-footer {
+  background: #f5f5f5;
+  padding: 2rem 1.5rem;
+  margin-top: 4rem;
+  border-top: 1px solid #ddd;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-text {
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-nav a {
+  color: #2a4d69;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+.footer-nav a:hover {
+  opacity: 0.6;
+}
+.subscribe-button {
+  background-color: #000;         /* 黒背景 */
+  color: #fff !important;         /* ← 白文字を強制 */
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;          /* 丸っぽく */
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+.subscribe-button:hover {
+  background-color: #222;
+  transform: scale(1.05);
+}
+@media screen and (max-width: 768px) {
+  .shorts-grid {
+    grid-template-columns: repeat(2, 1fr); /* タブレットで2列 */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .shorts-grid {
+    grid-template-columns: 1fr; /* スマホで1列 */
+  }
+}
+@media screen and (max-width: 600px) {
+  .shorts-section {
+    margin-top: 9rem; /* ← 全体を下げる */
+  }
+}
+
+
+  </style>
+</head>
+<body>
+ <header class="navbar">
+  <div class="nav-header">
+    <div class="logo">ブロックサプライズ</div>
+  </div>
+  <nav class="nav-menu">
+    <a href="index.html">ホーム</a>
+    <a href="guide.html">ガイド</a>
+    <a href="videos.html">動画</a>
+    <a href="shorts.html">ショート</a>
+    <a href="https://www.youtube.com/@block-surprise?sub_confirmation=1" target="_blank" rel="noopener" class="subscribe-button">登録</a>
+  </nav>
+</header>
+
+<section class="shorts-section">
+  <h2 class="section-title">🎞️ ショート動画一覧</h2>
+  <p class="section-lead">短い時間で、静かな驚きを。</p>
+
+  <h3 class="sub-title">✨ おすすめショート</h3>
+  <div class="shorts-grid" id="recommended"></div>
+
+  <h3 class="sub-title">🔥 人気ショート</h3>
+  <div class="shorts-grid" id="popular"></div>
+</section>
+<section class="channel-link">
+  <p>その他のショート動画は、<a href="https://www.youtube.com/channel/UCUaJpMmiilIKKPoAqnI0hFQ" target="_blank" rel="noopener">YouTubeチャンネル</a>でご覧いただけます。</p>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-text">© 2025 ブロックサプライズ公式サイト</p>
+    <nav class="footer-nav">
+      <a href="about.html">この世界について</a>
+      <a href="https://www.youtube.com/channel/UCUaJpMmiilIKKPoAqnI0hFQ" target="_blank" rel="noopener">YouTubeチャンネル</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+const shorts = [
+  {
+    title: "銅ゴーレムは落下ダメージをくらう？",
+    videoId: "GqAi-IHPdL0",
+    desc: "新しいモブ「銅ゴーレム」の新情報！",
+    tags: ["銅ゴーレム", "落下ダメージ", "新情報"],
+    category: "recommended"
+  },
+  {
+    title: "銅ゴーレム安全な道を選べる？",
+    videoId: "6jCS9nWmigw",
+    desc: "新モブ「銅ゴーレム」の知能が明らかに！",
+    tags: ["銅ゴーレム", "知能", "人気"],
+    category: "popular"
+  },
+  {
+    title: "楽々に上昇",
+    videoId: "ehlN7-w7sgM",
+    desc: "新しい上昇の仕方!?見るだけでわかる!",
+    tags: ["上昇", "楽々", "おすすめ"],
+    category: "recommended"
+  },
+  {
+    title: "銅ゴーレムは4マスの区間を何秒で運べる？ ",
+    videoId: "xebjIx33VYY",
+    desc: "「銅ゴーレム」の足の速さは？",
+    tags: ["銅ゴーレム", "速さ", "人気"],
+    category: "popular"
+  }
+];
+
+function renderShorts() {
+  const recommended = document.getElementById("recommended");
+  const popular = document.getElementById("popular");
+
+  shorts.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "short-card";
+    card.innerHTML = `
+      <iframe src="https://www.youtube.com/embed/${item.videoId}" allowfullscreen></iframe>
+      <div class="info">
+        <div class="title">${item.title}</div>
+        <div class="desc">${item.desc}</div>
+        <div class="tags">#${item.tags.join(" #")}</div>
+      </div>
+    `;
+
+    if (item.category === "recommended") {
+      recommended.appendChild(card);
+    } else if (item.category === "popular") {
+      popular.appendChild(card);
+    }
+  });
+}
+
+renderShorts();
+</script>
+
+</body>
+</html>
+
